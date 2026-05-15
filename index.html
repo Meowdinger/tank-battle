@@ -1297,6 +1297,14 @@
     requestAnimationFrame(loop);
   }
 
+  // 启动前先初始化空地图，避免菜单状态下 draw() 访问未初始化的 map[r][c]
+  for (let r = 0; r < ROWS; r++) {
+    map.push(new Array(COLS).fill(EMPTY));
+  }
+  for (let r = 0; r < ROWS * 2; r++) {
+    bricks.push(new Array(COLS * 2).fill(0));
+  }
+
   // 启动
   loop();
 
